@@ -1,9 +1,11 @@
 from archivos import cargar_paises
-from paises import buscar_paises
-
+from paises import agregar_pais
+ 
 paises = cargar_paises("datos/paises.csv")
 
-resultados = buscar_paises(paises, "arg")
+# Prueba 1: agregar un país válido
+agregar_pais(paises, "Chile", 19600000, 756102, "América")
 
-for pais in resultados:
-    print(pais["nombre"])
+# Mostrar resultado
+for pais in paises:
+    print (pais["nombre"])
