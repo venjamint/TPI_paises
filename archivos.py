@@ -10,6 +10,6 @@ def cargar_paises (ruta):
         return paises
 
 
-resultado = cargar_paises("datos/paises.csv")
+ 
  
  
