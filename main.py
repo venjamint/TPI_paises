@@ -2,14 +2,10 @@
 from archivos import cargar_paises
 from paises import agregar_pais
 from paises import modificar_pais
-
+from paises import filtrar_por_continente
 paises = cargar_paises("datos/paises.csv")
-modificar_pais(paises, "Argentina", 47000000, 2780400)
 
-for pais in paises:
-    if pais["nombre"] == "Argentina":
-        print(pais)
+resultado = filtrar_por_continente (paises, "américa")
 
-modificar_pais(paises, "Brasil", -500, 8515767)
-modificar_pais(paises, "Brasil", 213993437, "abc")
-modificar_pais(paises, "Uruguay", 3500000, 176215)
+for pais in resultado:
+    print(pais["nombre"])
