@@ -91,3 +91,12 @@ def modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada
             return
     #De no encontrarse imprime un error    
     print ("ERROR: No se encontro el pais")
+
+def filtrar_por_continente(paises, continente):
+    encontrados = []
+
+    for pais in paises:
+        if pais["continente"].lower() == continente.lower():
+            encontrados.append(pais)
+
+    return encontrados
