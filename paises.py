@@ -1,10 +1,11 @@
+import unicodedata
  ####################################################################
 def buscar_paises(paises, busqueda):
 #se recorre la lista de paises
     encontrados = []
 
     for pais in paises:
-#Si se encuentra se lo agrega a una lista vacia
+#Si se encuentra el nombre o una coincidencia parcial, se lo agrega a una lista vacia
 #y devuelve la lista al finalizar la ejecucion
         if busqueda.lower() in pais["nombre"].lower():
             encontrados.append(pais)
@@ -91,12 +92,87 @@ def modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada
             return
     #De no encontrarse imprime un error    
     print ("ERROR: No se encontro el pais")
+####################################################################
+#normaliza textos para poder buscar de manera uniforme 
+def normalizar_texto (texto):
+    #se transforma a minuscula
+    texto = texto.lower()
+    #normalize va a utilizar el formato NFD para separar letras de tildes
+    texto = unicodedata.normalize("NFD", texto)
+    #recorre la palabra letra por letra separandolas de las tildes 
+    # y agregando las letras a la variable
+    texto = "".join (letra for letra in texto if unicodedata.category(letra) != "Mm")
+    return texto
 
 def filtrar_por_continente(paises, continente):
     encontrados = []
+    #el nombre del continente ingresado se "normaliza"
+    continente = normalizar_texto(continente)
+    #se recorre la lista paises "normalizando" el valor que contiene "continente"
+    for pais in paises:
+        continente_pais = normalizar_texto(pais["continente"])
+    #si se encuentra una coincidencia se agrega a la lista
+        if continente_pais == continente:
+            encontrados.append(pais)
+     
+    return encontrados
+####################################################################
+def filtrar_por_poblacion (paises, minimo, maximo):
+    encontrados = []
+    try:
+        minimo = int(minimo)
+        maximo = int(maximo)
+    except ValueError:
+        print ("ERROR: Los limites deben ser numeros enteros")
+        return encontrados
+    if minimo < 0 or maximo < 0:
+        print ("ERROR: Los limite no pueden ser negativos") 
+        return encontrados
+    if minimo > maximo:
+        print("ERROR: El minimo no puede ser mayor al maximo.")
+        return encontrados
 
     for pais in paises:
-        if pais["continente"].lower() == continente.lower():
+        if minimo <= pais["poblacion"] <= maximo:
             encontrados.append(pais)
-
     return encontrados
+####################################################################
+def filtrar_por_superficie (paises, minimo, maximo):
+    encontrados = []
+    try:
+        minimo = int(minimo)
+        maximo = int(maximo)
+    except ValueError:
+        print ("ERROR: Los limites deben ser numeros enteros")
+        return encontrados
+    if minimo < 0 or maximo < 0:
+        print ("ERROR: Los limite no pueden ser negativos") 
+        return encontrados
+    if minimo > maximo:
+        print("ERROR: El minimo no puede ser mayor al maximo.")
+        return encontrados
+
+    for pais in paises:
+        if minimo <= pais["superficie"] <= maximo:
+            encontrados.append(pais)
+    return encontrados
+####################################################################
+def ordenar(paises,criterio, orden):
+    match criterio:
+        case 1:#nombre   
+        case 2:#poblacion
+        case 3: #superficie
+        case _: 
+            return "ERROR: Elija una opcion valida"
+     
+         
+ 
+    match orden :
+        case 1: #A-Z
+            lista_ordenada_asc =sorted(paises, key=lambda pais: pais["nombre"], reverse= False)
+            return lista_ordenada_asc
+        case 2: #Z-A
+            lista_ordenada_desc = sorted(paises, key=lambda pais: pais["nombre"], reverse= True)
+            return lista_ordenada_desc
+        case _: 
+            return "Error: Elija opcion 1 o 2" 
