@@ -158,21 +158,28 @@ def filtrar_por_superficie (paises, minimo, maximo):
     return encontrados
 ####################################################################
 def ordenar(paises,criterio, orden):
+    #se encarga de ordenar los diccionarios segun el caso seleccionador
     match criterio:
         case 1:#nombre   
+            clave =  lambda pais:pais["nombre"]
         case 2:#poblacion
+            clave  =   lambda pais:pais["poblacion"]
         case 3: #superficie
-        case _: 
-            return "ERROR: Elija una opcion valida"
-     
+            clave  =    lambda pais:pais["superficie"]
+        case _:    
+            print("ERROR: Elija una opcion valida")
+            return []
+
          
- 
+    #en el orden seleccionado 
     match orden :
         case 1: #A-Z
-            lista_ordenada_asc =sorted(paises, key=lambda pais: pais["nombre"], reverse= False)
-            return lista_ordenada_asc
+            lista_ordenada= sorted(paises, key=clave, reverse= False)
+            return lista_ordenada 
         case 2: #Z-A
-            lista_ordenada_desc = sorted(paises, key=lambda pais: pais["nombre"], reverse= True)
-            return lista_ordenada_desc
+            lista_ordenada= sorted(paises, key=clave, reverse= True)
+            return lista_ordenada 
         case _: 
-            return "Error: Elija opcion 1 o 2" 
+             
+            print("Error: Elija opcion 1 o 2")
+            return [] 
