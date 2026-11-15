@@ -3,11 +3,11 @@ import unicodedata
 def buscar_paises(paises, busqueda):
 #se recorre la lista de paises
     encontrados = []
-
+    busqueda = busqueda.lower().strip()
     for pais in paises:
 #Si se encuentra el nombre o una coincidencia parcial, se lo agrega a una lista vacia
 #y devuelve la lista al finalizar la ejecucion
-        if busqueda.lower() in pais["nombre"].lower():
+        if busqueda in pais["nombre"].lower():
             encontrados.append(pais)
     return encontrados
 
@@ -38,19 +38,19 @@ def agregar_pais(paises, nombre, poblacion, superficie, continente):
         poblacion= int(poblacion)
     except ValueError:
         print("ERROR: El valor de la poblacion debe ser un numero entero")
-        return
+        return False
     if poblacion <= 0:
          print ("ERROR: La poblacion debe ser mayor a cero.")
-         return
+         return False
     
     try:
         superficie = int(superficie)
     except ValueError:
         print("ERROR: El valor de la superficie debe ser un numero entero")
-        return
+        return False
     if superficie <= 0:
         print ("ERROR: La superficie debe ser mayor a cero.")
-        return
+        return False
 #se agrega el diccionario creado a la lista
     pais = {
         "nombre":nombre,
@@ -59,7 +59,7 @@ def agregar_pais(paises, nombre, poblacion, superficie, continente):
             "continente":continente
             }
     paises.append(pais)
-    print("Pais cargado correctamente!!!")
+    return True
 ####################################################################
 def modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada):
     #recorremos el diccionario hasta encontrar una coincidencia  
@@ -71,25 +71,26 @@ def modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada
                 poblacion_actualizada = int(poblacion_actualizada)
             except ValueError:
                 print("ERROR: La poblacion debe ser un numero entero")
-                return
+                return False
             if poblacion_actualizada <= 0:
                 print("ERROR: La poblacion debe ser mayor a cero")
-                return
+                return False
             
             try: 
                 superficie_actualizada = int(superficie_actualizada)
             except ValueError:
                 print ("ERROR: La superficie debe ser un numero entero")
-                return
+                return False
           
             if superficie_actualizada <= 0:
                 print ("ERROR: La superficie debe ser mayor a cero")
+                return False 
     #Se actualizan los datos
             pais["poblacion"]= poblacion_actualizada
             pais["superficie"] = superficie_actualizada
 
             print ("Datos modificados correctamente")
-            return
+            return True
     #De no encontrarse imprime un error    
     print ("ERROR: No se encontro el pais")
 ####################################################################
@@ -101,9 +102,11 @@ def normalizar_texto (texto):
     texto = unicodedata.normalize("NFD", texto)
     #recorre la palabra letra por letra separandolas de las tildes 
     # y agregando las letras a la variable
-    texto = "".join (letra for letra in texto if unicodedata.category(letra) != "Mm")
+    texto = "".join (letra for letra in texto if unicodedata.category(letra) != "Mn")
+
     return texto
 
+####################################################################
 def filtrar_por_continente(paises, continente):
     encontrados = []
     #el nombre del continente ingresado se "normaliza"
@@ -183,3 +186,17 @@ def ordenar(paises,criterio, orden):
              
             print("Error: Elija opcion 1 o 2")
             return [] 
+####################################################################      
+def mostrar_paises(resultado):
+
+    if not resultado:
+        print("No se encontraron países.")
+        return
+
+    for pais in resultado:
+        print("------------------------------")
+        print(f"Nombre: {pais['nombre']}")
+        print(f"Población: {pais['poblacion']}")
+        print(f"Superficie: {pais['superficie']} km²")
+        print(f"Continente: {pais['continente']}")
+        

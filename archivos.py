@@ -8,8 +8,12 @@ def cargar_paises (ruta):
             linea["superficie"] = int(linea["superficie"])
             paises.append(linea)
         return paises
-
-
+def guardar_paises (ruta, paises):
+    formato  = ["nombre","poblacion","superficie", "continente" ]
  
- 
+    with open (ruta, "w", newline= "",encoding ="utf-8") as archivo:
+       escritor = csv.DictWriter(archivo, fieldnames= formato)
+       escritor.writeheader()      
+       escritor.writerows(paises)
+
  
