@@ -1,88 +1,84 @@
 nombre,poblacion,superficie,continente
-Argentina,3455345345,12312312312,América
-Brasil,213993437,8515767,América
-Japón,125800000,377975,Asia
-Alemania,83149300,357022,Europa
-Canadá,40097761,9984670,América
-Egipto,112716599,1002450,África
-Australia,26439111,7692024,Oceanía
-Bolivia,12582000,1098580,América
-Paraguay,7013000,406752,América
-Uruguay,3385000,176215,América
-Perú,34577000,1285216,América
-Ecuador,18290000,256370,América
-Colombia,53426000,1141748,América
-Venezuela,28517000,912050,América
-México,131947000,1964375,América
-Estados Unidos,341785000,9833517,América
-Guatemala,18688000,108889,América
-Honduras,11006000,112492,América
-El Salvador,6366000,21041,América
-Nicaragua,7008000,130373,América
-Costa Rica,5153000,51100,América
-Panamá,4571000,75320,América
-Cuba,10937000,109884,América
-República Dominicana,11520000,48671,América
-Haití,11906000,27750,América
-Jamaica,2837000,10991,América
-Guyana,836000,214969,América
-Francia,68720000,551695,Europa
-Italia,58916000,301340,Europa
-España,49355000,505990,Europa
-Portugal,10805000,92212,Europa
-Reino Unido,69487000,243610,Europa
-Irlanda,5485000,70273,Europa
-Países Bajos,18346000,41543,Europa
-Bélgica,11942000,30689,Europa
-Suiza,9092000,41285,Europa
-Austria,9208000,83879,Europa
-Polonia,36436000,312696,Europa
-Chequia,10887000,78871,Europa
-Eslovaquia,5414000,49035,Europa
-Hungría,9539000,93028,Europa
-Rumania,19020000,238397,Europa
-Bulgaria,6715000,110879,Europa
-Grecia,10414000,131957,Europa
-Noruega,5611000,385207,Europa
-Suecia,10597000,450295,Europa
-Finlandia,5646000,338145,Europa
-China,1406585000,9596961,Asia
-India,1463866000,3287590,Asia
-Indonesia,285721000,1904569,Asia
-Pakistán,255220000,881913,Asia
-Bangladesh,175687000,147570,Asia
-Vietnam,101599000,331340,Asia
-Tailandia,71620000,513120,Asia
-Myanmar,54851000,676578,Asia
-Malasia,35978000,330803,Asia
-Filipinas,116787000,300000,Asia
-Nepal,29618000,147516,Asia
-Sri Lanka,21756000,65610,Asia
-Afganistán,43844000,652870,Asia
-Irán,92418000,1745150,Asia
-Irak,47021000,438317,Asia
-Arabia Saudita,36974000,2149690,Asia
-Emiratos Árabes Unidos,11346000,83600,Asia
-Yemen,41774000,527968,Asia
-Turquía,85878000,783562,Asia
-Kazajistán,20844000,2724900,Asia
-Nigeria,237528000,923768,África
-Etiopía,135472000,1104300,África
-República Democrática del Congo,112832000,2344858,África
-Tanzania,70546000,947303,África
-Kenia,57532000,580367,África
-Uganda,51385000,241550,África
-Ghana,35064000,238533,África
-Sudáfrica,64747000,1221037,África
-Argelia,47435000,2381741,África
-Marruecos,38431000,446550,África
-Angola,39040000,1246700,África
-Mozambique,35632000,801590,África
-Madagascar,32741000,587041,África
-Camerún,29879000,475442,África
-Costa de Marfil,32712000,322463,África
-Nueva Zelanda,5252000,268838,Oceanía
-Papúa Nueva Guinea,10763000,462840,Oceanía
-Fiyi,933000,18274,Oceanía
-Islas Salomón,839000,28896,Oceanía
-Vanuatu,335000,12189,Oceanía
+Argentina,46000000,2780400,América
+Brasil,212000000,8515767,América
+Chile,19800000,756102,América
+Uruguay,3500000,176215,América
+Paraguay,6900000,406752,América
+Bolivia,12500000,1098581,América
+Perú,34200000,1285216,América
+Ecuador,18100000,283561,América
+Colombia,52800000,1141748,América
+Venezuela,28500000,916445,América
+México,131000000,1964375,América
+Canadá,41000000,9984670,América
+Estados Unidos,347000000,9833517,América
+Cuba,9700000,109884,América
+Haití,11800000,27750,América
+República Dominicana,11400000,48671,América
+Guatemala,18500000,108889,América
+Costa Rica,5200000,51100,América
+Panamá,4500000,75417,América
+Honduras,11000000,112492,América
+Nicaragua,7000000,130373,América
+El Salvador,6400000,21041,América
+Jamaica,2800000,10991,América
+China,1408000000,9596961,Asia
+Japón,123000000,377975,Asia
+India,1464000000,3287263,Asia
+Corea del Sur,51700000,100210,Asia
+Corea del Norte,26500000,120538,Asia
+Mongolia,3500000,1564116,Asia
+Indonesia,285000000,1904569,Asia
+Tailandia,71600000,513120,Asia
+Vietnam,101000000,331212,Asia
+Filipinas,117000000,300000,Asia
+Malasia,36000000,330803,Asia
+Singapur,6000000,735,Asia
+Pakistán,255000000,881913,Asia
+Bangladés,176000000,148460,Asia
+Nepal,30000000,147516,Asia
+Arabia Saudita,34500000,2149690,Asia
+Irán,92000000,1648195,Asia
+Irak,47000000,438317,Asia
+Israel,10000000,22072,Asia
+Turquía,88000000,783562,Asia
+Alemania,84000000,357022,Europa
+Francia,69000000,551695,Europa
+Italia,59000000,301340,Europa
+España,49000000,505990,Europa
+Portugal,10500000,92212,Europa
+Reino Unido,70000000,243610,Europa
+Irlanda,5400000,70273,Europa
+Noruega,5600000,385207,Europa
+Suecia,10600000,450295,Europa
+Finlandia,5600000,338455,Europa
+Dinamarca,6000000,43094,Europa
+Islandia,400000,103000,Europa
+Polonia,38000000,312696,Europa
+Ucrania,39000000,603500,Europa
+Rusia,144000000,17098242,Europa
+Grecia,10300000,131957,Europa
+Suiza,9000000,41285,Europa
+Países Bajos,18000000,41543,Europa
+Bélgica,11800000,30528,Europa
+Egipto,118000000,1002450,África
+Sudáfrica,64000000,1219090,África
+Nigeria,237000000,923768,África
+Kenia,57000000,580367,África
+Marruecos,38000000,446550,África
+Argelia,47000000,2381741,África
+Túnez,12400000,163610,África
+Etiopía,135000000,1104300,África
+Ghana,35000000,238533,África
+Senegal,18500000,196722,África
+Angola,39000000,1246700,África
+Australia,27000000,7692024,Oceanía
+Nueva Zelanda,5300000,268838,Oceanía
+Papúa Nueva Guinea,10500000,462840,Oceanía
+Fiyi,930000,18274,Oceanía
+Islas Salomón,830000,28896,Oceanía
+Vanuatu,340000,12189,Oceanía
+Samoa,220000,2842,Oceanía
+Tonga,100000,747,Oceanía
+Kiribati,135000,811,Oceanía
+Micronesia,115000,702,Oceanía

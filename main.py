@@ -60,14 +60,15 @@ def main():
                     continente = "Oceanía"
                 else:
                     continente = continente.capitalize()
+                #agregar pais    
+                resultado = agregar_pais(paises,nombre,poblacion, superficie, continente)
 
-            # Agregar país
-                resultado = agregar_pais(paises,nombre,poblacion,superficie,continente)
-
-            # Guardar cambios
                 if resultado:
                     guardar_paises(ruta_csv(), paises)
+
                     print("Datos guardados correctamente.")
+                else:
+                    print("No se pudo agregar el país.")
                 
             case "2":
                  nombre = input("Ingrese el nombre del país que desea modificar: ")
