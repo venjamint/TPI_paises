@@ -12,7 +12,7 @@ filtrar_por_poblacion,
 filtrar_por_superficie,
 normalizar_texto,
 ordenar,
- )
+eliminar_pais )
 #de estadisticas.py
 from estadisticas import (promediador,
 pais_menor_poblacion,
@@ -24,12 +24,13 @@ paises_x_continente)
 def mostrar_menu():
     print("\n========== GESTIÓN DE PAÍSES ==========")
     print("1. Agregar país")
-    print("2. Modificar país")
-    print("3. Buscar país")
-    print("4. Filtrar países")
-    print("5. Ordenar países")
-    print("6. Estadísticas")
-    print("7. Salir")
+    print ("2. Eliminar país")
+    print("3. Modificar país")
+    print("4. Buscar país")
+    print("5. Filtrar países")
+    print("6. Ordenar países")
+    print("7. Estadísticas")
+    print("8. Salir")
     print("=======================================")
 ####################################################################
 def main():
@@ -44,8 +45,8 @@ def main():
         match opcion:
             case "1":
                 nombre = pedir_texto("Ingrese el nombre del país: ")
-                poblacion = input("Ingrese la población: ")
-                superficie = input("Ingrese la superficie: ")
+                poblacion = pedir_entero_positivo("Ingrese la población: ")
+                superficie = pedir_entero_positivo("Ingrese la superficie: ")
                 continente = pedir_texto("Ingrese el continente: ") 
                 
                 while continente.lower() not in ("america", "américa", "asia", "europa","africa", "áfrica", "oceania", "oceanía"):
@@ -69,16 +70,25 @@ def main():
                     print("Datos guardados correctamente.")
                 else:
                     print("No se pudo agregar el país.")
-                
             case "2":
-                 nombre = input("Ingrese el nombre del país que desea modificar: ")
-                 poblacion_actualizada = input("Ingrese la nueva población: ")
-                 superficie_actualizada = input("Ingrese la nueva superficie: ")
+                nombre = pedir_texto("ingrese el nombre del pais que quiere eliminar:   ")
+                resultado = eliminar_pais(paises, nombre)
+                if resultado:
+                    guardar_paises(ruta_csv(),paises)
+                    
+                
+            case "3":
+                 nombre = pedir_texto("Ingrese el nombre del país que desea modificar: ")
+                 poblacion_actualizada =pedir_entero_positivo("Ingrese la nueva población: ")
+                 superficie_actualizada = pedir_entero_positivo("Ingrese la nueva superficie: ")
 
                  resultado = modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada)
                  if resultado:
                      guardar_paises(ruta_csv(), paises)
-            case "3":
+                     print("País modificado correctamente.")
+                 else:
+                     print("ERROR: No se pudo modificar el país.")
+            case "4":
                  busqueda = input(
                     "Ingrese el nombre o fragmento del país: "
                 )
@@ -95,14 +105,14 @@ def main():
                         print(f"Superficie: {pais['superficie']} km²")
                         print(f"Continente: {pais['continente']}")
 
-            case "4":
+            case "5":
                 menu_filtros(paises)
 
-            case "5":
-                menu_ordenamientos(paises)
             case "6":
-                 menu_estadisticas(paises)
+                menu_ordenamientos(paises)
             case "7":
+                 menu_estadisticas(paises)
+            case "8":
                 print("Finalizando programa...")
                 break
             case _:
@@ -123,15 +133,15 @@ def menu_filtros(paises):
         match opcion:
 
             case "1":
-                continente = input("Ingrese el continente: ")
+                continente = pedir_texto("Ingrese el continente: ")
                 resultado = filtrar_por_continente(
                     paises, continente
                 )
                 mostrar_paises(resultado)
 
             case "2":
-                minimo = input("Ingrese la población mínima: ")
-                maximo = input("Ingrese la población máxima: ")
+                minimo = pedir_entero_positivo("Ingrese la población mínima: ")
+                maximo = pedir_entero_positivo("Ingrese la población máxima: ")
 
                 resultado = filtrar_por_poblacion(
                     paises, minimo, maximo
@@ -139,8 +149,8 @@ def menu_filtros(paises):
                 mostrar_paises(resultado)
 
             case "3":
-                minimo = input("Ingrese la superficie mínima: ")
-                maximo = input("Ingrese la superficie máxima: ")
+                minimo = pedir_entero_positivo("Ingrese la superficie mínima: ")
+                maximo = pedir_entero_positivo("Ingrese la superficie máxima: ")
 
                 resultado = filtrar_por_superficie(
                     paises, minimo, maximo
@@ -257,6 +267,7 @@ def menu_estadisticas(paises):
             case _:
                 print("ERROR: Opción inválida")
 ####################################################################
+#Verificadores
 def pedir_texto(mensaje):
     #se repite la solicitud hasta recibir un dato valido
     while True:
@@ -267,19 +278,30 @@ def pedir_texto(mensaje):
             print("ERROR: El campo no puede estar vacío.")
         else:
             return texto
+def pedir_entero_positivo(mensaje):
+    while True:
+        try:
+            numero = int(input(mensaje))
+
+            if numero <= 0:
+                print("ERROR: El número debe ser mayor a cero.")
+            else:
+                return numero
+
+        except ValueError:
+            print("ERROR: Debe ingresar un número entero.")
+
 ####################################################################
 # carga de datos
 def cargar_datos_iniciales():
     ruta = ruta_csv ()
-    try:
-        paises = cargar_paises(ruta)
-        return paises
-    except FileNotFoundError:
-        print ("ERROR; no se encontró el archivo CVS.")
+    paises = cargar_paises(ruta)
+    
+    if paises is None:
+        print("No se pudieron cargar los datos iniciales.")
         return None
-    except (KeyError, ValueError) as error:
-        print (f"ERROR al cargar los datos: {error}")
-        return None
+
+    return paises
 def ruta_csv ():
     ruta = os.path.join(os.path.dirname(__file__), "datos", "paises.csv")
     return ruta

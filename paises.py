@@ -18,55 +18,52 @@ def buscar_paises(paises, busqueda):
 
 ####################################################################
 def agregar_pais(paises, nombre, poblacion, superficie, continente):
-#para poder agregar un pais primero hay que evitar
-# que se ingrese un campo vacio, eso se busca aplicando strip() sobre las variables    
+
+    # Eliminar espacios innecesarios
     nombre = nombre.strip()
     continente = continente.strip()
-#se detecta si la variable esta vacia y se finaliza la ejecucion de la funcion
-#en caso de que la condicion sea True
+
+    # Validar que los campos de texto no estén vacíos
     if nombre == "":
-        print("ERROR: El campo no puede estar vacio")
+        print("ERROR: El nombre del país no puede estar vacío.")
         return False
+
     if continente == "":
-        print("ERROR: El campo no puede estar vacio")    
+        print("ERROR: El continente no puede estar vacío.")
         return False
-#se recorre la lista de paises buscando coincidencias
-# en caso de existir coincidencia la funcion se finaliza  
+
+    # Verificar que el país no esté registrado
     for pais in paises:
-        if nombre.lower() == pais["nombre"].lower():
-         print ("ERROR: El pais ya se encuentra registrado ")
-         return False
-#asegurandonos de que no se ingresaron variables vacias ahora vamos a verificar
-# que esos datos puedan convertirse a int y que sean mayores a cero
-# finalizando la ejecucion de la funcion cuando no se cumplan estas condiciones 
-    try:
-        poblacion= int(poblacion)
-    except ValueError:
-        print("ERROR: El valor de la poblacion debe ser un numero entero")
-        return False
-    if poblacion <= 0:
-         print ("ERROR: La poblacion debe ser mayor a cero.")
-         return False
-    
-    try:
-        superficie = int(superficie)
-    except ValueError:
-        print("ERROR: El valor de la superficie debe ser un numero entero")
-        return False
-    if superficie <= 0:
-        print ("ERROR: La superficie debe ser mayor a cero.")
-        return False
-#se agrega el diccionario creado a la lista
-    pais = {
-        "nombre":nombre,
-            "poblacion":poblacion,
-            "superficie":superficie, 
-            "continente":continente
-            }
-    paises.append(pais)
+        if nombre.casefold() == pais["nombre"].casefold():
+            print("ERROR: El país ya se encuentra registrado.")
+            return False
+
+    # Crear el nuevo registro
+    nuevo_pais = {
+        "nombre": nombre,
+        "poblacion": poblacion,
+        "superficie": superficie,
+        "continente": continente
+    }
+
+    # Agregar el país a la lista
+    paises.append(nuevo_pais)
+
     return True
 ####################################################################
-def modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada):
+def eliminar_pais(paises, nombre):
+     
+    for pais in paises:
+        if pais["nombre"].lower() == nombre.lower():
+            paises.remove(pais)
+            print("Pais eliminado exitosamente")
+            return True
+           
+     
+    print ("ERROR: No se encontro el pais")
+    return False
+####################################################################
+def modificar_pais (paises, nombre, poblacion_actualizada, superficie_actualizada):
     #recorremos el diccionario hasta encontrar una coincidencia  
     for pais in paises:
         if pais["nombre"].lower() == nombre.lower():
@@ -200,7 +197,7 @@ def mostrar_paises(resultado):
 
     if not resultado:
         print("No se encontraron países.")
-        return
+        return False
 
     for pais in resultado:
         print("------------------------------")
