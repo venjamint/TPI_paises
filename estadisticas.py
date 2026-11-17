@@ -1,4 +1,4 @@
-from archivos import cargar_paises
+
 ####################################################################
 def pais_mayor_poblacion(paises):
     #en caso de que la lista paises se encuentre vacia
@@ -7,13 +7,11 @@ def pais_mayor_poblacion(paises):
     #devuelve el pais con mayor poblacion
     return max(paises, key=lambda pais: pais["poblacion"], default =None )
 ####################################################################
-def pais_menor_poblacion (paises):
-    menor_poblacion = min(
-        paises,
-        key=lambda pais: pais["poblacion"],
-        default=None
-    )
-    return menor_poblacion
+def pais_menor_poblacion(paises):
+    if not paises:
+        return None
+
+    return min(paises, key=lambda pais: pais["poblacion"])
 ####################################################################
 def promediador (paises, atributo):
     #en caso de que poblacion o superficie se encuentre vacio

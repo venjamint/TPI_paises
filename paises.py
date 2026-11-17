@@ -4,9 +4,14 @@ def buscar_paises(paises, busqueda):
 #se recorre la lista de paises
     encontrados = []
     busqueda = busqueda.lower().strip()
+      # Validar que la búsqueda no esté vacía
+    if not busqueda:
+        print("ERROR: Debe ingresar un nombre para buscar.")
+        return encontrados
+
     for pais in paises:
-#Si se encuentra el nombre o una coincidencia parcial, se lo agrega a una lista vacia
-#y devuelve la lista al finalizar la ejecucion
+        #Si se encuentra el nombre o una coincidencia parcial, se lo agrega a una lista vacia
+        #y devuelve la lista al finalizar la ejecucion
         if busqueda in pais["nombre"].lower():
             encontrados.append(pais)
     return encontrados
@@ -21,16 +26,16 @@ def agregar_pais(paises, nombre, poblacion, superficie, continente):
 #en caso de que la condicion sea True
     if nombre == "":
         print("ERROR: El campo no puede estar vacio")
-        return
+        return False
     if continente == "":
         print("ERROR: El campo no puede estar vacio")    
-        return
+        return False
 #se recorre la lista de paises buscando coincidencias
 # en caso de existir coincidencia la funcion se finaliza  
     for pais in paises:
         if nombre.lower() == pais["nombre"].lower():
          print ("ERROR: El pais ya se encuentra registrado ")
-         return
+         return False
 #asegurandonos de que no se ingresaron variables vacias ahora vamos a verificar
 # que esos datos puedan convertirse a int y que sean mayores a cero
 # finalizando la ejecucion de la funcion cuando no se cumplan estas condiciones 
@@ -93,6 +98,7 @@ def modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada
             return True
     #De no encontrarse imprime un error    
     print ("ERROR: No se encontro el pais")
+    return False
 ####################################################################
 #normaliza textos para poder buscar de manera uniforme 
 def normalizar_texto (texto):
@@ -111,6 +117,9 @@ def filtrar_por_continente(paises, continente):
     encontrados = []
     #el nombre del continente ingresado se "normaliza"
     continente = normalizar_texto(continente)
+    if not continente:
+         print ("ERROR no se puede ingresar un campo vacio")
+         return encontrados
     #se recorre la lista paises "normalizando" el valor que contiene "continente"
     for pais in paises:
         continente_pais = normalizar_texto(pais["continente"])

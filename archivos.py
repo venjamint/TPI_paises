@@ -1,8 +1,10 @@
 import csv
 def cargar_paises (ruta):
-    with open(ruta, "r", encoding="utf-8") as archivo:
-        lector = csv.DictReader(archivo)
-        paises = []
+    paises= []
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            lector = csv.DictReader(archivo)
+            formato: list[str]  = ["nombre","poblacion","superficie", "continente" ]
         for linea in lector:
             linea["poblacion"] = int(linea["poblacion"])
             linea["superficie"] = int(linea["superficie"])
