@@ -1,21 +1,18 @@
 import unicodedata
  ####################################################################
 def buscar_paises(paises, busqueda):
-#se recorre la lista de paises
-    encontrados = []
-    busqueda = busqueda.lower().strip()
-      # Validar que la búsqueda no esté vacía
-    if not busqueda:
-        print("ERROR: Debe ingresar un nombre para buscar.")
-        return encontrados
 
+    encontrados = []
+    #quita mayusculas y tildes de un texto para facilitar la busqueda
+    busqueda = normalizar_texto(busqueda)
+    #se recorre la lista con los paises
     for pais in paises:
-        #Si se encuentra el nombre o una coincidencia parcial, se lo agrega a una lista vacia
-        #y devuelve la lista al finalizar la ejecucion
-        if busqueda in pais["nombre"].lower():
+    #en cada iteracion el nombre del pais tambien es normalizado 
+        nombre = normalizar_texto(pais["nombre"])
+    #si hay conincidencia total o parcial la agrega a encontrados[]
+        if busqueda in nombre:
             encontrados.append(pais)
     return encontrados
-
 ####################################################################
 def agregar_pais(paises, nombre, poblacion, superficie, continente):
 
@@ -56,7 +53,7 @@ def eliminar_pais(paises, nombre):
     for pais in paises:
         if pais["nombre"].lower() == nombre.lower():
             paises.remove(pais)
-            print("Pais eliminado exitosamente")
+            print("Pais eliminado exitosamente!!!")
             return True
            
      

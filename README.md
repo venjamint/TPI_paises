@@ -1,102 +1,84 @@
-El programa permite registrar nuevos países, modificar información existente, realizar búsquedas, aplicar filtros, ordenar los registros y obtener estadísticas generales.
+Gestión de Datos de Países
+
+Trabajo Práctico Integrador de Programación 1. Esta aplicación de consola, desarrollada en Python, permite gestionar información de países almacenada en un archivo CSV. El proyecto aplica listas, diccionarios, funciones, estructuras condicionales y repetitivas, búsqueda, filtrado, ordenamiento y estadísticas.
+
 Funcionalidades
 
-El programa cuenta con las siguientes funcionalidades:
+Agregar países con nombre, población, superficie y continente. El programa valida los campos ingresados, evita nombres duplicados y requiere valores enteros positivos para población y superficie.
 
-1. Agregar países
+Modificar la población y la superficie de un país.
 
-Registrar nuevos países.
+Buscar países por nombre completo o por coincidencia parcial. La búsqueda ignora mayúsculas y tildes, y solicita un texto no vacío.
 
-Validar que los campos no estén vacíos.
+Filtrar países por continente, rango de población o rango de superficie.
 
-Comprobar que no existan países duplicados.
+Ordenar por nombre, población o superficie, en orden ascendente o descendente.
 
-Validar que la población y la superficie sean números enteros positivos.
+Consultar el país con mayor y menor población, los promedios de población y superficie, y la cantidad de países por continente.
 
-Validar y estandarizar los nombres de los continentes.
+Eliminar países, como opción adicional del sistema.
 
-2. Modificar países
+El programa también controla el formato del encabezado del CSV y los valores numéricos al cargar los datos, y muestra mensajes cuando no encuentra resultados o detecta entradas inválidas.
 
-Buscar un país registrado.
+Datos
 
-Actualizar su población.
+Los países se almacenan en datos/paises.csv, con estos campos:
 
-Actualizar su superficie.
+nombre,poblacion,superficie,continente
 
-Validar los nuevos valores ingresados.
+Ejemplo de registro:
 
-3. Buscar países
+Argentina,47070217,3761274,América
 
-Buscar países por su nombre.
+El programa carga los datos al iniciarse y guarda los cambios realizados al agregar, modificar o eliminar países.
 
-Permitir búsquedas parciales.
+Requisitos
 
-No distinguir entre mayúsculas y minúsculas.
+Python 3.10 o posterior.
 
-4. Filtrar países
+No se requieren bibliotecas externas.
 
-Filtrar por continente.
+Cómo ejecutar
 
-Filtrar por rango de población.
+Desde la carpeta raíz del proyecto, ejecutar:
 
-Filtrar por rango de superficie.
+python main.py
 
-5. Ordenar países
+El sistema mostrará un menú en consola. Ingresá el número de la opción deseada y seguí las indicaciones.
 
-Permite ordenar los registros según tres criterios:
+Ejemplos de uso
 
-Nombre.
+Búsqueda parcial
 
-Población.
+Entrada:
 
-Superficie.
+Seleccione una opción: 4
+Ingrese el nombre del pais que quiere consultar: Arg
 
-Cada criterio admite orden ascendente y descendente.
+Salida esperada con el CSV de ejemplo:
 
-6. Estadísticas
+Nombre: Argentina
+Población: 47070217
+Superficie: 3761274 km²
+Continente: América
 
-Identificar el país con mayor población.
+Los valores mostrados dependen del contenido actual de datos/paises.csv.
 
-Identificar el país con menor población.
+Búsqueda vacía
 
-Calcular el promedio de población.
+Si se deja vacío el texto de búsqueda, el programa solicita un valor válido:
 
-Calcular el promedio de superficie.
+Ingrese el nombre del pais que quiere consultar:
+ERROR: El campo no puede estar vacío.
 
-Contabilizar la cantidad de países por continente.
+Archivos principales
 
-Tecnologías utilizadas
+main.py: menú principal, submenús y coordinación de las operaciones.
 
-Python: lenguaje de programación utilizado para desarrollar la aplicación.
+paises.py: funciones de gestión, búsqueda, filtrado y ordenamiento.
 
-CSV: formato utilizado para almacenar y recuperar los datos.
+archivos.py: carga y guardado del archivo CSV.
 
-Módulo csv: permite leer y escribir información en archivos CSV.
+estadisticas.py: cálculos estadísticos.
 
-Módulo os: utilizado para construir rutas de archivos.
-
-
-Descripción de los archivos:
-main.py
-Contiene el menú principal y los submenús de la aplicación.
-
-paises.py
-Contiene las funciones para agregar, modificar, buscar, filtrar y ordenar países.
-
-archivos.py
-Se encarga de leer y guardar los datos en el archivo CSV.
-
-estadisticas.py
-Contiene las funciones encargadas de calcular las estadísticas.
-
-paises.csv
-Almacena los registros de los países.
-
-Autor
-
-Proyecto desarrollado como parte de la asignatura Programación 1, correspondiente a la Tecnicatura en Programación.
-
-Estudiante: Tonelli Rivarola Benjamin
-Institución: Universida Tecnologica Nacional
-
-Año: 2026
+datos/paises.csv: conjunto de datos inicial.

@@ -89,9 +89,7 @@ def main():
                  else:
                      print("ERROR: No se pudo modificar el país.")
             case "4":
-                 busqueda = input(
-                    "Ingrese el nombre o fragmento del país: "
-                )
+                 busqueda = pedir_texto("Ingrese el nombre del pais que quiere consultar:   ")
                  resultado = buscar_paises(paises, busqueda)
 
                  if not resultado:
