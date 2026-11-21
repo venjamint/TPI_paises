@@ -32,89 +32,6 @@ def mostrar_menu():
     print("7. Estadísticas")
     print("8. Salir")
     print("=======================================")
-####################################################################
-def main():
-    paises = cargar_datos_iniciales()
-    if paises is None:
-        return
-    while True:
-        mostrar_menu()
-
-        opcion = input("Seleccione una opción: ")
-
-        match opcion:
-            case "1":
-                nombre = pedir_texto("Ingrese el nombre del país: ")
-                poblacion = pedir_entero_positivo("Ingrese la población: ")
-                superficie = pedir_entero_positivo("Ingrese la superficie: ")
-                continente = pedir_texto("Ingrese el continente: ") 
-                
-                while continente.lower() not in ("america", "américa", "asia", "europa","africa", "áfrica", "oceania", "oceanía"):
-                    print("ERROR: Ingrese un continente válido.")
-                    continente = pedir_texto("Ingrese el continente: ")
-            # Estandarizar el nombre del continente
-                if continente.lower() in ("america", "américa"):
-                    continente = "América"
-                elif continente.lower() in ("africa", "áfrica"):
-                    continente = "África"
-                elif continente.lower() in ("oceania", "oceanía"):
-                    continente = "Oceanía"
-                else:
-                    continente = continente.capitalize()
-                #agregar pais    
-                resultado = agregar_pais(paises,nombre,poblacion, superficie, continente)
-
-                if resultado:
-                    guardar_paises(ruta_csv(), paises)
-
-                    print("Datos guardados correctamente.")
-                else:
-                    print("No se pudo agregar el país.")
-            case "2":
-                nombre = pedir_texto("ingrese el nombre del pais que quiere eliminar:   ")
-                resultado = eliminar_pais(paises, nombre)
-                if resultado:
-                    guardar_paises(ruta_csv(),paises)
-                    
-                
-            case "3":
-                 nombre = pedir_texto("Ingrese el nombre del país que desea modificar: ")
-                 poblacion_actualizada =pedir_entero_positivo("Ingrese la nueva población: ")
-                 superficie_actualizada = pedir_entero_positivo("Ingrese la nueva superficie: ")
-
-                 resultado = modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada)
-                 if resultado:
-                     guardar_paises(ruta_csv(), paises)
-                     print("País modificado correctamente.")
-                 else:
-                     print("ERROR: No se pudo modificar el país.")
-            case "4":
-                 busqueda = pedir_texto("Ingrese el nombre del pais que quiere consultar:   ")
-                 resultado = buscar_paises(paises, busqueda)
-
-                 if not resultado:
-                    print("No se encontraron países.")
-
-                 else:
-                    for pais in resultado:
-                        print("------------------------------")
-                        print(f"Nombre: {pais['nombre']}")
-                        print(f"Población: {pais['poblacion']}")
-                        print(f"Superficie: {pais['superficie']} km²")
-                        print(f"Continente: {pais['continente']}")
-
-            case "5":
-                menu_filtros(paises)
-
-            case "6":
-                menu_ordenamientos(paises)
-            case "7":
-                 menu_estadisticas(paises)
-            case "8":
-                print("Finalizando programa...")
-                break
-            case _:
-                print("Opción inválida")
 ####################################################################   
 #funcion de sub menu para case 4
 def menu_filtros(paises):
@@ -264,6 +181,89 @@ def menu_estadisticas(paises):
 
             case _:
                 print("ERROR: Opción inválida")
+####################################################################
+def main():
+    paises = cargar_datos_iniciales()
+    if paises is None:
+        return
+    while True:
+        mostrar_menu()
+
+        opcion = input("Seleccione una opción: ")
+
+        match opcion:
+            case "1":
+                nombre = pedir_texto("Ingrese el nombre del país: ")
+                poblacion = pedir_entero_positivo("Ingrese la población: ")
+                superficie = pedir_entero_positivo("Ingrese la superficie: ")
+                continente = pedir_texto("Ingrese el continente: ") 
+                
+                while continente.lower() not in ("america", "américa", "asia", "europa","africa", "áfrica", "oceania", "oceanía"):
+                    print("ERROR: Ingrese un continente válido.")
+                    continente = pedir_texto("Ingrese el continente: ")
+            # Estandarizar el nombre del continente
+                if continente.lower() in ("america", "américa"):
+                    continente = "América"
+                elif continente.lower() in ("africa", "áfrica"):
+                    continente = "África"
+                elif continente.lower() in ("oceania", "oceanía"):
+                    continente = "Oceanía"
+                else:
+                    continente = continente.capitalize()
+                #agregar pais    
+                resultado = agregar_pais(paises,nombre,poblacion, superficie, continente)
+
+                if resultado:
+                    guardar_paises(ruta_csv(), paises)
+
+                    print("Datos guardados correctamente.")
+                else:
+                    print("No se pudo agregar el país.")
+            case "2":
+                nombre = pedir_texto("ingrese el nombre del pais que quiere eliminar:   ")
+                resultado = eliminar_pais(paises, nombre)
+                if resultado:
+                    guardar_paises(ruta_csv(),paises)
+                    
+                
+            case "3":
+                 nombre = pedir_texto("Ingrese el nombre del país que desea modificar: ")
+                 poblacion_actualizada =pedir_entero_positivo("Ingrese la nueva población: ")
+                 superficie_actualizada = pedir_entero_positivo("Ingrese la nueva superficie: ")
+
+                 resultado = modificar_pais(paises, nombre, poblacion_actualizada, superficie_actualizada)
+                 if resultado:
+                     guardar_paises(ruta_csv(), paises)
+                     print("País modificado correctamente.")
+                 else:
+                     print("ERROR: No se pudo modificar el país.")
+            case "4":
+                 busqueda = pedir_texto("Ingrese el nombre del pais que quiere consultar:   ")
+                 resultado = buscar_paises(paises, busqueda)
+
+                 if not resultado:
+                    print("No se encontraron países.")
+
+                 else:
+                    for pais in resultado:
+                        print("------------------------------")
+                        print(f"Nombre: {pais['nombre']}")
+                        print(f"Población: {pais['poblacion']}")
+                        print(f"Superficie: {pais['superficie']} km²")
+                        print(f"Continente: {pais['continente']}")
+
+            case "5":
+                menu_filtros(paises)
+
+            case "6":
+                menu_ordenamientos(paises)
+            case "7":
+                 menu_estadisticas(paises)
+            case "8":
+                print("Finalizando programa...")
+                break
+            case _:
+                print("Opción inválida")
 ####################################################################
 #Verificadores
 def pedir_texto(mensaje):

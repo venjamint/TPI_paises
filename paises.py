@@ -15,20 +15,7 @@ def buscar_paises(paises, busqueda):
     return encontrados
 ####################################################################
 def agregar_pais(paises, nombre, poblacion, superficie, continente):
-
-    # Eliminar espacios innecesarios
-    nombre = nombre.strip()
-    continente = continente.strip()
-
-    # Validar que los campos de texto no estén vacíos
-    if nombre == "":
-        print("ERROR: El nombre del país no puede estar vacío.")
-        return False
-
-    if continente == "":
-        print("ERROR: El continente no puede estar vacío.")
-        return False
-
+   
     # Verificar que el país no esté registrado
     for pais in paises:
         if nombre.casefold() == pais["nombre"].casefold():
@@ -49,7 +36,7 @@ def agregar_pais(paises, nombre, poblacion, superficie, continente):
     return True
 ####################################################################
 def eliminar_pais(paises, nombre):
-     
+    
     for pais in paises:
         if pais["nombre"].lower() == nombre.lower():
             paises.remove(pais)
@@ -64,26 +51,6 @@ def modificar_pais (paises, nombre, poblacion_actualizada, superficie_actualizad
     #recorremos el diccionario hasta encontrar una coincidencia  
     for pais in paises:
         if pais["nombre"].lower() == nombre.lower():
-          #De encontrarse, vamos a corroborar que los datos
-          #ingresados sean numeros y mayores a 0
-            try:
-                poblacion_actualizada = int(poblacion_actualizada)
-            except ValueError:
-                print("ERROR: La poblacion debe ser un numero entero")
-                return False
-            if poblacion_actualizada <= 0:
-                print("ERROR: La poblacion debe ser mayor a cero")
-                return False
-            
-            try: 
-                superficie_actualizada = int(superficie_actualizada)
-            except ValueError:
-                print ("ERROR: La superficie debe ser un numero entero")
-                return False
-          
-            if superficie_actualizada <= 0:
-                print ("ERROR: La superficie debe ser mayor a cero")
-                return False 
     #Se actualizan los datos
             pais["poblacion"]= poblacion_actualizada
             pais["superficie"] = superficie_actualizada
